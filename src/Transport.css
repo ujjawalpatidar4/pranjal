@@ -42,6 +42,7 @@ input:focus {
     /* Removes default outline */
 }
 
+
 /* Radio group styling */
 .radio-group {
     margin: 15px 0;
@@ -66,12 +67,14 @@ button {
 
 .search-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 20px;
+
 }
 
 .search-container input {
     width: 80%;
+    margin: 0px;
 }
 
 .search-result {
