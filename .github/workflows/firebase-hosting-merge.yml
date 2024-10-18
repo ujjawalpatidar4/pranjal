@@ -6,7 +6,7 @@ name: Firebase Hosting CI for Merge
 on:
   push:
     branches:
-      - master  # or the relevant branch
+      - master  # Replace with your main branch if different
 
 jobs:
   build_and_deploy:
@@ -19,22 +19,23 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Adjust to your Node.js version
+        node-version: '16'  # Adjust to your required Node.js version
 
     - name: Install dependencies
       run: |
-        npm install --legacy-peer-deps  # Ensures all dependencies are installed
+        npm install --legacy-peer-deps
       env:
-        NODE_ENV: development  # Ensures devDependencies are installed
+        NODE_ENV: development  # Ensure devDependencies are installed
 
     - name: Build project
       run: npm run build
 
     - name: Deploy to Firebase Hosting
-      run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
-
+      uses: w9jds/firebase-action@master  # Make sure you're using the correct Firebase GitHub action
       with:
-        repoToken: ${{ secrets.GITHUB_TOKEN }}
-        firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGRAWALTRANSPORT_5863A }}
-        channelId: live
-        projectId: agrawaltransport-5863a
+        repoToken: ${{ secrets.GITHUB_TOKEN }}  # GitHub repo token for authentication
+        firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGRAWALTRANSPORT_5863A }}  # Firebase service account secret
+        channelId: live  # Channel ID for Firebase Hosting (live, in this case)
+        projectId: agrawaltransport-5863a  # Your Firebase project ID
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  # Your Firebase token secret
