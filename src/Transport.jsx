@@ -168,6 +168,7 @@ const TransportForm = () => {
           setStep(1);
     }catch (error) {
         console.error('Error adding document: ', error);
+        alert(error);
       }
   };
 
