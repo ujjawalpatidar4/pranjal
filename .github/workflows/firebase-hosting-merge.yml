@@ -31,11 +31,11 @@ jobs:
       run: npm run build
 
     - name: Deploy to Firebase Hosting
-      uses: w9jds/firebase-action@master  # Make sure you're using the correct Firebase GitHub action
+      uses: firebase-tools/action-hosting-deploy@v0
       with:
-        repoToken: ${{ secrets.GITHUB_TOKEN }}  # GitHub repo token for authentication
-        firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGRAWALTRANSPORT_5863A }}  # Firebase service account secret
-        channelId: live  # Channel ID for Firebase Hosting (live, in this case)
-        projectId: agrawaltransport-5863a  # Your Firebase project ID
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  # Your Firebase token secret
+        repoToken: ${{ secrets.GITHUB_TOKEN }}
+        firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AGRAWALTRANSPORT_5863A }}  # Your service account secret
+        channelId: live  # Channel ID for production hosting
+        projectId: agrawaltransport-5863a  # Your Firebase project ID  # Your Firebase project ID
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  # Your Firebase token secret
